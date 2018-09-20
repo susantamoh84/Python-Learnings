@@ -48,3 +48,142 @@ print(xl.keys())
 # Print the head of the first sheet (using its name, NOT its index)
 print(xl['1700'].head())
 
+# Import packages
+from urllib.request import urlopen,Request
+
+# Specify the url
+url = "http://www.datacamp.com/teach/documentation"
+
+# This packages the request: request
+request = Request(url)
+
+# Sends the request and catches the response: response
+response = urlopen(request)
+
+# Print the datatype of response
+print(type(response))
+
+# Be polite and close the response!
+response.close()
+
+# Extract the response: html
+html = response.read()
+
+# Print the html
+print(html)
+
+# Import package
+import requests
+
+# Specify the url: url
+url = "http://www.datacamp.com/teach/documentation"
+
+# Packages the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Extract the response: text
+text = r.text
+
+# Print the html
+print(text)
+
+# Import packages
+import requests
+from bs4 import BeautifulSoup
+
+# Specify url: url
+url = 'https://www.python.org/~guido/'
+
+# Package the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Extracts the response as html: html_doc
+html_doc = r.text
+
+# Create a BeautifulSoup object from the HTML: soup
+soup = BeautifulSoup(html_doc)
+
+# Prettify the BeautifulSoup object: pretty_soup
+pretty_soup = soup.prettify()
+
+# Print the response
+print(pretty_soup)
+
+# Get the title of Guido's webpage: guido_title
+guido_title = soup.title
+
+# Print the title of Guido's webpage to the shell
+print(guido_title)
+
+# Get Guido's text: guido_text
+guido_text = soup.get_text()
+
+# Print Guido's text to the shell
+print(guido_text)
+
+# Find all 'a' tags (which define hyperlinks): a_tags
+a_tags = soup.find_all('a')
+
+# Print the URLs to the shell
+for link in a_tags:
+    print(link.get('href'))
+    
+# Load JSON: json_data
+import json
+with open("a_movie.json") as json_file:
+    json_data=json.load(json_file)
+
+# Print each key-value pair in json_data
+for k in json_data.keys():
+    print(k + ': ', json_data[k])
+# Import requests package
+import requests
+
+# Assign URL to variable: url
+url='http://www.omdbapi.com/?apikey=ff21610b&t=the+social+network'
+
+# Package the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Print the text of the response
+print(r.text)
+
+# Package the request, send the request and catch the response: r
+r=requests.get(url)
+
+# Decode the JSON data into a dictionary: json_data
+json_data=r.json()
+
+# Print each key-value pair in json_data
+for k in json_data.keys():
+    print(k + ': ', json_data[k])
+
+import requests
+
+# Assign URL to variable: url
+url='https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=pizza'
+
+# Package the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Decode the JSON data into a dictionary: json_data
+json_data=r.json()
+
+# Print the Wikipedia page extract
+pizza_extract = json_data['query']['pages']['24768']['extract']
+print(pizza_extract)
+
+# Import package
+import tweepy
+
+# Store OAuth authentication credentials in relevant variables
+access_token = "1092294848-aHN7DcRP9B4VMTQIhwqOYiB14YkW92fFO8k8EPy"
+access_token_secret = "X4dHmhPfaksHcQ7SCbmZa2oYBBVSD2g8uIHXsp5CTaksx"
+consumer_key = "nZ6EA0FxZ293SxGNg8g8aP0HM"
+consumer_secret = "fJGEodwe3KiKUnsYJC3VRndj7jevVvXbK2D5EiJ2nehafRgA6i"
+
+# Pass OAuth details to tweepy's OAuth handler
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token,access_token_secret)
+
+
